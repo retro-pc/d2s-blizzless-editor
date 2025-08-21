@@ -4,28 +4,10 @@
     <link v-if="theme == 'd2'" href="css/theme.css" rel="stylesheet" />
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="octicon octicon-clippy navbar-brand">
-        <i class="fa fa-fw fa-github"></i>
-        <a href="https://github.com/dschu012">dschu012</a> / <a class="font-weight-bold"
-          href="https://github.com/dschu012/d2s-editor">d2s-editor</a>
-      </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <!-- <li class="nav-item" v-if="theme !== 'd2'">
-            <a class="nav-link" href="#" @click="setTheme('d2')">Change Theme</a>
-          </li>
-          <li class="nav-item" v-if="theme === 'd2'">
-            <a class="nav-link" href="#" @click="setTheme('dark')">Change Theme</a>
-          </li> -->
-        </ul>
-      </div>
     </nav>
 
     <div class="modal" tabindex="-1" role="dialog" id="LoadItem">
@@ -68,8 +50,7 @@
           <div class="card bg-light">
             <div class="card-body">
               <div class="alert alert-primary" role="alert">
-                This editor is still a work in progress. Some things may not work. Found a bug? <a
-                  href="https://github.com/dschu012/d2s-editor/issues/new">Report it.</a>
+                This editor is still a work in progress. Some things may not work.
               </div>
 
               <form id="d2sForm">
@@ -81,7 +62,7 @@
                           id="d2sFile" accept=".d2s,.d2i">
                         <label class="custom-file-label load-save-label" for="d2sFile">*.d2s,*.d2i</label>
                       </div>
-                      <!-- <div>
+                      <div>
                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Create New</button>
                         <div class="dropdown-menu dropdown-menu-right">
                           <button class="dropdown-item" type="button" @click="newChar(0)">Amazon</button>
@@ -93,115 +74,9 @@
                           <button class="dropdown-item" type="button" @click="newChar(6)">Assassin</button>
                         </div>
                       </div>
-                      <div class="input-group-append"><span>&nbsp;</span></div> -->
+                      <div class="input-group-append"><span>&nbsp;</span></div>
                     </div>
                   </div>
-
-                  <nav class="navbar navbar-expand-md navbar-light">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">Create new</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarGeneral" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Amazon
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarGeneral">
-                            <a class="dropdown-item" href="#" @click="newChar(0)">Amazon</a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Builds</h6>
-                            <a class="dropdown-item" href="#" @click="newChar(1)">Physical Bowazon</a>
-                            <a class="dropdown-item" href="#" @click="newChar(2)">Elemental Bowazon</a>
-                            <a class="dropdown-item" href="#" @click="newChar(3)">Elemental Bowazon(Mavina)</a>
-                            <a class="dropdown-item" href="#" @click="newChar(4)">Exploding Arrow</a>
-                            <a class="dropdown-item" href="#" @click="newChar(5)">Ligthing Fury</a>
-                            <a class="dropdown-item" href="#" @click="newChar(6)">Poison</a>
-                            <a class="dropdown-item" href="#" @click="newChar(7)">Spearzon</a>
-                          </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarGeneral" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Assassin
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarGeneral">
-                            <a class="dropdown-item" href="#" @click="newChar(60)">Assassin</a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Builds</h6>
-                            <a class="dropdown-item" href="#" @click="newChar(61)">Phoenix Strike</a>
-                          </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarGeneral" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Barbarian
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarGeneral">
-                            <a class="dropdown-item" href="#" @click="newChar(40)">Barbarian</a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Builds</h6>
-                            <a class="dropdown-item" href="#" @click="newChar(41)">Whirlwind</a>
-                            <a class="dropdown-item" href="#" @click="newChar(42)">Double Throw</a>
-                          </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarGeneral" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Druid
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarGeneral">
-                            <a class="dropdown-item" href="#" @click="newChar(50)">Druid</a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Builds</h6>
-                            <a class="dropdown-item" href="#" @click="newChar(51)">Fire</a>
-                          </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarGeneral" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Necromancer
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarGeneral">
-                            <a class="dropdown-item" href="#" @click="newChar(20)">Necromancer</a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Builds</h6>
-                            <a class="dropdown-item" href="#" @click="newChar(21)">Poison</a>
-                          </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarGeneral" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Paladin
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarGeneral">
-                            <a class="dropdown-item" href="#" @click="newChar(30)">Paladin</a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Builds</h6>
-                            <a class="dropdown-item" href="#" @click="newChar(31)">Blessed Hammer</a>
-                            <a class="dropdown-item" href="#" @click="newChar(32)">Fist of the Heavens</a>
-                          </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarGeneral" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Sorceress
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarGeneral">
-                            <a class="dropdown-item" href="#" @click="newChar(10)">Sorceress</a>
-                            <div class="dropdown-divider"></div>
-                            <h6 class="dropdown-header">Builds</h6>
-                            <a class="dropdown-item" href="#" @click="newChar(11)">Blizzard</a>
-                            <a class="dropdown-item" href="#" @click="newChar(12)">Blizzard(Mana)</a>
-                            <a class="dropdown-item" href="#" @click="newChar(13)">Fire</a>
-                            <a class="dropdown-item" href="#" @click="newChar(14)">Nova</a>
-                            <a class="dropdown-item" href="#" @click="newChar(15)">Enchant Bow</a>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </nav>
 
                   <div v-if="save != null">
                     <ul class="nav nav-tabs" id="tabs">
@@ -294,7 +169,6 @@
                         <button type="button" @click="maxGold" class="btn btn-primary">Max Gold</button>
                       </div>
                       <div class="row mt-3">
-                        <button type="button" id="d2" class="btn btn-primary" @click="saveFile(0x60)">Save D2</button>
                         <button type="button" id="d2r" class="btn btn-primary" @click="saveFile(0x63)">Save D2R</button>
                       </div>
                     </div>
@@ -403,8 +277,8 @@
       d2s.setConstantData(96, window.constants_96.constants); //1.10-1.14d
       d2s.setConstantData(97, window.constants_96.constants); //alpha? (D2R)
       d2s.setConstantData(98, window.constants_96.constants); //2.4 (D2R)
-      d2s.setConstantData(99, window.constants_99.constants); //2.5+ (D2R)
-      window.constants = window.constants_99.constants;
+      d2s.setConstantData(99, window.constants_blizzless_99.constants); //2.5+ (D2R)
+      window.constants = window.constants_blizzless_99.constants;
 
       this.addRunewordToItemPack(window.constants.runewords, "Runewords");
       this.addUniqToItemPack(window.constants.unq_items, "Uniques");
