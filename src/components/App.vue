@@ -239,7 +239,7 @@
         clipboard: null,
         load: null,
         notifications: [],
-        grid: { inv: { w: 10, h: 4 }, stash: { w: 10, h: 10 }, cube: { w: 3, h: 4 } },
+        grid: { inv: { w: 10, h: 4 }, stash: { w: 16, h: 13 }, cube: { w: 3, h: 4 } },
         location: {},
         theme: localStorage.getItem('theme')
       };
