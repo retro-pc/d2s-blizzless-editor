@@ -223,6 +223,7 @@
           @item-event="onEvent"
           :id="'InventoryGrid'"
           class="equippedInventoryGrid"
+          :contextMenu="this.contextMenu">
     </Grid>
   </div>
 
