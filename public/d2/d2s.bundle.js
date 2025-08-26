@@ -774,7 +774,11 @@ function describeMods(magic_attributes, constants) {
         mod.description = describeSingleMod(mod, prop, constants);
     }
     addModGroups(mods, constants);
-    mods.sort(function (a, b) { var _a, _b; return ((_a = constants.magical_properties[b.id]) === null || _a === void 0 ? void 0 : _a.so) - ((_b = constants.magical_properties[a.id]) === null || _b === void 0 ? void 0 : _b.so); });
+    mods.sort(function (a, b) {
+        var _a, _b, _c, _d;
+        return ((_a = constants.magical_properties[b.id]) === null || _a === void 0 ? void 0 : _a.so) - ((_b = constants.magical_properties[a.id]) === null || _b === void 0 ? void 0 : _b.so) ||
+            ((_c = b.param) !== null && _c !== void 0 ? _c : 0) - ((_d = a.param) !== null && _d !== void 0 ? _d : 0);
+    });
     return mods;
 }
 function describeSingleMod(mod, prop, constants) {
@@ -1021,8 +1025,8 @@ function allAttributes(item, constants) {
     }
     var magic_attributes = item.magic_attributes || [];
     var runeword_attributes = item.runeword_attributes || [];
-    //const set_attributes = item.set_attributes || [];
-    return __spreadArrays([], JSON.parse(JSON.stringify(magic_attributes)), JSON.parse(JSON.stringify(runeword_attributes)), JSON.parse(JSON.stringify(socketed_attributes))).filter(function (attribute) { return attribute != null; });
+    var set_attributes = item.set_attributes || [];
+    return __spreadArrays([], JSON.parse(JSON.stringify(magic_attributes)), JSON.parse(JSON.stringify(runeword_attributes)), JSON.parse(JSON.stringify(set_attributes)), JSON.parse(JSON.stringify(socketed_attributes))).filter(function (attribute) { return attribute != null; });
 }
 
 
@@ -3916,6 +3920,7 @@ function readConstantData(buffers) {
         strings = Object.assign(strings, _readJSONStrings(_getKey(buffers, "item-nameaffixes.json")));
         strings = Object.assign(strings, _readJSONStrings(_getKey(buffers, "item-names.json")));
         strings = Object.assign(strings, _readJSONStrings(_getKey(buffers, "item-runes.json")));
+        //strings = Object.assign(strings, {"Runeword180": "Nightfall"});
         strings = Object.assign(strings, _readJSONStrings(_getKey(buffers, "skills.json")));
     }
     constants.classes = _readClasses(_getArray(buffers, "CharStats.txt"), _getArray(buffers, "PlayerClass.txt"), strings);
@@ -4227,7 +4232,8 @@ function propertyTypeFromFunc(func) {
 function _readRunewords(tsv, strings, skills) {
     var _a;
     var arr = [];
-    var cName = tsv.header.indexOf("Name");
+    var cid = tsv.header.indexOf("Name");
+    var cname = tsv.header.indexOf("*Rune Name");
     var cComplete = tsv.header.indexOf("complete");
     var types = [];
     for (var i = 1; i < 7; i++) {
@@ -4246,11 +4252,12 @@ function _readRunewords(tsv, strings, skills) {
         modifiers[i].cMax = tsv.header.indexOf("T1Max" + i);
     }
     var _loop_1 = function (i) {
-        var name_3 = tsv.lines[i][cName];
+        var sid = tsv.lines[i][cid];
+        var name_3 = tsv.lines[i][cname];
         var enabled = tsv.lines[i][cComplete];
         var o = {};
         if (enabled) {
-            var id = +name_3.substring(8);
+            var id = +sid.substring(8);
             //TODO: why?
             if (id > 75) {
                 id += 25;
@@ -4259,7 +4266,7 @@ function _readRunewords(tsv, strings, skills) {
                 id += 26;
             }
             o.id = id;
-            o.n = strings[tsv.lines[i][cName]];
+            o.n = name_3;
             var t = [];
             for (var j = 0; j <= 6; j++) {
                 var type = tsv.lines[i][types[j]];
@@ -4362,6 +4369,7 @@ function _resolvetItemTypeCategories(arr, key) {
 function _readItems(tsv, itemtypes, strings) {
     var arr = [];
     var cCode = tsv.header.indexOf("code");
+    var cName = tsv.header.indexOf("name");
     var cNameStr = tsv.header.indexOf("namestr");
     var cStackable = tsv.header.indexOf("stackable");
     var cMinac = tsv.header.indexOf("minac");
@@ -4552,7 +4560,7 @@ function _readSetOrUnqItems(tsv, strings, skills) {
         if (index && index != "Expansion") {
             var o = {};
             o.id = id;
-            o.n = strings[tsv.lines[i][cIndex]];
+            o.n = index;
             if (tsv.lines[i][cInvfile])
                 o.i = tsv.lines[i][cInvfile];
             if (tsv.lines[i][cCode])

@@ -59,8 +59,9 @@
         <li v-if="getItemMaxSockets() > 0 && !item.given_runeword">
           <!-- <div>{{getItemMaxSockets()}}</div> -->
           <label>Sockets:</label>
+          <!--  :max="getItemMaxSockets()" -->
           <input class="edit-box" type="number" v-model.number="item.total_nr_of_sockets" min="0"
-            :max="getItemMaxSockets()" @input="onEvent('update')" />
+            @input="onEvent('update')" />
         </li>
         <li v-if="itemCanEthereal(item.type)">
           <div class="form-check form-check-inline">
@@ -167,7 +168,6 @@ export default {
       this.$emit('item-event', { item: this.item, location: this.location, type: 'move' });
     },
     getBasesOptions(code) {
-      //console.log(this.item)
       let bases = [];
       let constants = {};
       if (this.item.type_id == 3) {
