@@ -774,11 +774,7 @@ function describeMods(magic_attributes, constants) {
         mod.description = describeSingleMod(mod, prop, constants);
     }
     addModGroups(mods, constants);
-    mods.sort(function (a, b) {
-        var _a, _b, _c, _d;
-        return ((_a = constants.magical_properties[b.id]) === null || _a === void 0 ? void 0 : _a.so) - ((_b = constants.magical_properties[a.id]) === null || _b === void 0 ? void 0 : _b.so) ||
-            ((_c = b.param) !== null && _c !== void 0 ? _c : 0) - ((_d = a.param) !== null && _d !== void 0 ? _d : 0);
-    });
+    mods.sort(function (a, b) { var _a, _b, _c, _d; return ((_a = constants.magical_properties[b.id]) === null || _a === void 0 ? void 0 : _a.so) - ((_b = constants.magical_properties[a.id]) === null || _b === void 0 ? void 0 : _b.so) || ((_c = b.param) !== null && _c !== void 0 ? _c : 0) - ((_d = a.param) !== null && _d !== void 0 ? _d : 0); });
     return mods;
 }
 function describeSingleMod(mod, prop, constants) {
@@ -848,6 +844,9 @@ function describeSingleMod(mod, prop, constants) {
             break;
         case 19: //main
             modDesc = formatStr(modDesc, val);
+            break;
+        case 29:
+            modDesc = formatStr(modDesc, -val);
             break;
         case 20:
             valueDesc = -val + "%";
@@ -3920,8 +3919,9 @@ function readConstantData(buffers) {
         strings = Object.assign(strings, _readJSONStrings(_getKey(buffers, "item-nameaffixes.json")));
         strings = Object.assign(strings, _readJSONStrings(_getKey(buffers, "item-names.json")));
         strings = Object.assign(strings, _readJSONStrings(_getKey(buffers, "item-runes.json")));
-        //strings = Object.assign(strings, {"Runeword180": "Nightfall"});
+        strings = Object.assign(strings, { Runeword180: "Nightfall" });
         strings = Object.assign(strings, _readJSONStrings(_getKey(buffers, "skills.json")));
+        strings = Object.assign(strings, { Moditempoisdurskill: "%d%% to Poison Duration of Poison Skills" });
     }
     constants.classes = _readClasses(_getArray(buffers, "CharStats.txt"), _getArray(buffers, "PlayerClass.txt"), strings);
     var skillDescs = _readSkillDesc(_getArray(buffers, "SkillDesc.txt"), strings);
